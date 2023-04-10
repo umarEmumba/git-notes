@@ -10,6 +10,7 @@ List as _List,
 WindowScroller as _WindowScroller
 } from "react-virtualized";
 import useGrid from '../../../../hooks/useGrid';
+import Loader from '../../../common/Loader/Loader';
 
 const AutoSizer = _AutoSizer as unknown as FC<AutoSizerProps>;
 const InfiniteLoader = _InfiniteLoader as unknown as FC<InfiniteLoaderProps>;
@@ -17,10 +18,11 @@ const List = _List as unknown as FC<ListProps>;
 const WindowScroller = _WindowScroller as unknown as FC<WindowScrollerProps>;
 
 const GistsGridView = () => {
-  const { rowRenderer,isRowLoaded, loadMoreRows, filteredGists } = useGrid();
+  const { rowRenderer,isRowLoaded, loadMoreRows, filteredGists, status } = useGrid();
 
   return (
-    <AutoSizer disableHeight={true}>
+    <>
+    <AutoSizer >
           {({ width }) => (
             <WindowScroller>
               {({ height, isScrolling, onChildScroll, scrollTop }) => (
@@ -50,6 +52,12 @@ const GistsGridView = () => {
             </WindowScroller>
           )}
         </AutoSizer>
+        {
+          status === "loading" && 
+          <Loader />
+        }
+    </>
+
 );
 }
 

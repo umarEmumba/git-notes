@@ -4,7 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Box } from "@mui/material";
 import Gist from "../components/common/Gist/Gist";
 import { fetchGists } from "../store/gists/gistsSlice";
-
+type RowLoadedParam = {
+  index : number;
+}
 const useGrid = ()=>{
     const {page,searchQuery,gists, status} = useSelector((state: storeStateType) => state.gists);
     const [gridGists, setGridGists] = useState(gists);
@@ -48,9 +50,10 @@ const useGrid = ()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[ page, status]
     )
-    const isRowLoaded = ({index} : any) => {
+    const isRowLoaded = ({index} : RowLoadedParam ) => {
+      console.log({index})
       return !!filteredGists[index]
     }
-    return { rowRenderer, isRowLoaded, loadMoreRows, filteredGists }
+    return { rowRenderer, isRowLoaded, loadMoreRows, filteredGists, status }
 }
 export default useGrid;

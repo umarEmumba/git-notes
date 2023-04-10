@@ -1,5 +1,7 @@
 // export type gistsType
 
+import { GenericObject } from "../../utils";
+
 export type getGistsParamType = {
     page : number;
     func : 'getGists' | 'starredGists' |'getMyGists'
@@ -24,7 +26,7 @@ export interface gistType {
     git_pull_url: string
     git_push_url: string
     html_url: string
-    files: any
+    files: GenericObject
     public: boolean
     created_at: string
     updated_at: string

@@ -1,11 +1,10 @@
-import { Avatar, Typography, Paper, Grid, Box, Container } from "@mui/material";
+import { Avatar, Typography, Grid, Box, Container } from "@mui/material";
 import useGistPage from "../../hooks/useGistPage";
 import Header from "../../components/Header/Header";
 import Loader from "../../components/common/Loader/Loader";
-import ViewFile from "../../components/Gists/DisplayGists/GistsGridView/ViewFile/ViewFile";
 import { dateToDuration } from "../../utils";
-import { blue } from "@mui/material/colors";
 import ActionIcons from "../../components/common/ActionIcons/ActionIcons";
+import FileContent from "./FileContent/FileContent";
 
 
 const GistPage = () => {
@@ -15,8 +14,9 @@ const GistPage = () => {
   return (
     <>
       <Header />
-      {loader && <Loader />}
-      {!loader && gistData && (
+      {loader ? <Loader /> 
+      :
+       gistData && (
         <Container>
           <Box className="m-0 m-auto">
             <Grid container alignItems="center" className="mb-3" sx={{flexWrap: 'nowrap'}}>
@@ -26,10 +26,10 @@ const GistPage = () => {
               <Grid item xs={4} >
                 <Box className="pl-4">
                   <Typography color="blue">{gistData?.owner?.login}</Typography>
-                  <Typography style={{ color: "gray", fontSize: "14px" }}>
+                  <Typography color="gray" fontSize="14px">
                     Created {dateToDuration(gistData?.created_at)}{" "}
                   </Typography>
-                  <Typography style={{ color: "gray", fontSize: "10px" }}>
+                  <Typography color="gray" fontSize="10px">
                     Broadcast Server
                   </Typography>
                 </Box>
@@ -43,19 +43,7 @@ const GistPage = () => {
                 </Box>
               </Grid>
             </Grid>
-            <Paper className="p-4">
-                <Box className="min-h-[420px]">
-                  <Typography color={blue[500]}>
-                    {gistData?.files[Object.keys(gistData?.files)[0]]?.filename}
-                  </Typography>
-                  <hr />
-                  <ViewFile
-                    url={
-                      gistData?.files[Object.keys(gistData?.files)[0]]?.raw_url
-                    }
-                  />
-                </Box>
-            </Paper>
+            <FileContent file = {gistData?.files[Object.keys(gistData?.files)[0]]} />
           </Box>
         </Container>
       )}
