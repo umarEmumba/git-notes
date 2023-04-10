@@ -6,12 +6,13 @@ import { gistType } from "../store/gists/types";
 const useFetchGist = () => {
   const { id } = useParams();
   const [gistData, setGistData] = useState<gistType>();
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if(!id)
       return;
     (async () => {
+      setLoader(true);
 
       try {
         const response = await axios.get(`https://api.github.com/gists/${id}`);
@@ -27,7 +28,8 @@ const useFetchGist = () => {
   return {
     id,
     gistData,
-    loader
+    loader,
+    setLoader,
   };
 };
 export default useFetchGist;

@@ -13,6 +13,7 @@ const EditGist = () => {
         handleChangeContent,
         createGist,
         updateGist,
+        loader,
         id,
       } = useCreateGist();
     
@@ -25,6 +26,7 @@ const EditGist = () => {
               <TextField 
                 type="text"
                 value={gistDesc}
+                disabled={loader}
                 variant="outlined"
                 label="Description"
                 onChange={handleChangeDesc}
@@ -33,6 +35,7 @@ const EditGist = () => {
               <TextField 
                 type="text"
                 variant="outlined"
+                disabled={loader}
                 label="File Name"
                 value={fileName}
                 onChange={handleChangeFileName}
@@ -42,6 +45,7 @@ const EditGist = () => {
                 <TextField
                   rows={20}
                   multiline
+                  disabled={loader}
                   variant="outlined"
                   label="File Content"
                   value={gistContent}
@@ -53,7 +57,7 @@ const EditGist = () => {
           </FormControl>
           <Box className="p-5">
             <SubmitButton
-              disabled={!gistContent || !fileName}
+              disabled={loader || !gistContent.trim() || !fileName.trim()}
               handleSubmit={
                 id ? () => updateGist(id) : createGist
               }

@@ -18,7 +18,7 @@ const useProfilePage = () =>{
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {user} = useContext(userContext);
-  const {id,gistData,loader} = useFetchGist();
+  const {id,gistData,loader,setLoader} = useFetchGist();
   const [fileName, setFileName] = useState<string>("");
   const [gistDesc, setGistDesc] = useState<string>("");
   const [gistContent, setGistContent] = useState("");
@@ -30,15 +30,19 @@ const useProfilePage = () =>{
       
       (async () => {
         try {
+          setLoader(true);
           const response = await fetch(gistData?.files[Object.keys(gistData?.files)[0]]?.raw_url);
           const resp = await response.text();
           setGistContent(resp)
         } catch (err) {
           console.log("API error:", err);
         }
+        setLoader(false);
+
       })();
 
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[gistData, id])
 
   const handleChangeDesc = (e: ChangeEvent<HTMLInputElement  | HTMLTextAreaElement>) => {
@@ -62,15 +66,23 @@ const useProfilePage = () =>{
         }
       },
     };
-    
-    await callApi("https://api.github.com/gists", requestData, {
-      method: "POST",
-      headers: {
-        Authorization: `token ${user?.accessToken}`,
-      }
-    });
-    dispatch(setSnackBarMessage("New Gist Created successfully!"));
-    navigate('/your-gists');
+    setLoader(true);
+    try {
+        await callApi("https://api.github.com/gists", requestData, {
+          method: "POST",
+          headers: {
+            Authorization: `token ${user?.accessToken}`,
+          }
+        });
+        dispatch(setSnackBarMessage("New Gist Created successfully!"));
+        navigate('/your-gists');
+      
+    } catch (error) {
+      dispatch(setSnackBarMessage("Failed!! Something Went Wrong!"));
+      
+    }
+    setLoader(false);
+
   };
   
   const updateGist =async (id:string) => {
@@ -86,15 +98,20 @@ const useProfilePage = () =>{
       requestData.files[fileName] = {
         content: gistContent,
       };
-    await callApi(`https://api.github.com/gists/${id}`, requestData, {
-        method: "POST",
-        headers: {
-          Authorization: `token ${user?.accessToken}`,
-        }
-    });
-    dispatch(setSnackBarMessage("Gist updated successfully!"));
-
-    navigate('/your-gists');
+      setLoader(true);
+      try {
+        await callApi(`https://api.github.com/gists/${id}`, requestData, {
+            method: "POST",
+            headers: {
+              Authorization: `token ${user?.accessToken}`,
+            }
+        });
+        dispatch(setSnackBarMessage("Gist updated successfully!"));
+        navigate('/your-gists');
+      } catch (error) {
+        dispatch(setSnackBarMessage("Failed!! Something Went Wrong!"));
+      }
+      setLoader(false);
   };
 
   return {
