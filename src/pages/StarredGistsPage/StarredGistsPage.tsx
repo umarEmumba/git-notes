@@ -18,7 +18,7 @@ const StarredGistsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {filteredGists,status} = useFilteredGists()
   useEffect(()=>{
-    const fetchGistFunction = location.pathname === "/starred-gists" ? "starredGists" : "getGists";
+    const fetchGistFunction = location.pathname === "/starred-gists" ? "starredGists" : "getMyGists";
     dispatch(fetchGists({page : 1, func : fetchGistFunction , accessToken : user?.accessToken}));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])

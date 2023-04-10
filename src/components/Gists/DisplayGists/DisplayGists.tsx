@@ -22,12 +22,7 @@ const DisplayGists: FC<DisplayGistsProps> = ({activeView}) => {
   ) => {
     dispatch(fetchGists({page: newPage + 1, func : 'getGists'}))
   };
-  // const handleChangeRowsPerPage = (
-  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  // ) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
+ 
     return (
       <>
       {

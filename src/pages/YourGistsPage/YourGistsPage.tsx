@@ -18,7 +18,7 @@ const YourGistsPage: FC = () => {
   const {filteredGists, status} = useFilteredGists();
 
   useEffect(()=>{
-    const fetchGistFunction = location.pathname === "/starred-gists" ? "starredGists" : "getGists";
+    const fetchGistFunction = location.pathname === "/starred-gists" ? "starredGists" : "getMyGists";
     if(user?.accessToken){
       dispatch(fetchGists({page : 1, func : fetchGistFunction, accessToken : user.accessToken}));
     }

@@ -2,7 +2,7 @@
 
 export type getGistsParamType = {
     page : number;
-    func : 'getGists' | 'starredGists'
+    func : 'getGists' | 'starredGists' |'getMyGists'
     accessToken ?: string;
 } 
 

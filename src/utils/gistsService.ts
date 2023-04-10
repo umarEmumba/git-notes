@@ -4,9 +4,25 @@ import { apiBaseUrl, gistsApiUrl, gistsPerPage } from "../constants";
 
  const getGists = async (pageNumber : number, accessToken : string | undefined) => {
     try {
-      console.log({accessToken})
       const resp = await callApi(
         `${gistsApiUrl}?per_page=${gistsPerPage}&page=${pageNumber}`, null,
+        {
+          method: "GET",
+          headers: {
+            ...(accessToken && {  Authorization: `token ${accessToken}` })
+          }
+        }
+      );
+      return resp?.data;
+    } catch (err) {
+     throw err;
+    }
+  };
+
+ const getMyGists = async (pageNumber : number, accessToken : string | undefined ) => {
+    try {
+      const resp = await callApi(
+        `${gistsApiUrl}`, null,
         {
           method: "GET",
           headers: {
@@ -35,8 +51,9 @@ import { apiBaseUrl, gistsApiUrl, gistsPerPage } from "../constants";
   };
 
   export const gistsFunctions = {
+    getMyGists,
     getGists,
-    starredGists
+    starredGists,
   };
 
 export const starAGist = async (gist_id: string, accessToken : string) => {
