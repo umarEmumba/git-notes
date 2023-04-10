@@ -1,57 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme  } from '@mui/material/styles';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import RequiresAuth from './components/common/RequiresAuth/RequiresAuth';
+import { themePrimaryColor, themeSecondaryColor } from './constants';
+import userContext from './context/userContext';
+import GistPage from './pages/GistPage/GistPage';
+import LandingPage from './pages/LandingPage/LandingPage';
+import YourGistsPage from './pages/YourGistsPage/YourGistsPage';
+import EditGist from './pages/EditGist/EditGist';
+import useAuth from './hooks/useAuth';
+import SnackBar from './components/common/SnackBar/SnackBar';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
-function App() {
+const theme = createTheme ({
+  palette: {
+    primary:  {
+      main : themePrimaryColor,
+    },
+    secondary: {
+      main: themeSecondaryColor,
+    },
+  }
+});
+
+const App = () => {
+  const auth = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <userContext.Provider value = {auth}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <SnackBar />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/gist/:id" element={<GistPage />} />
+            <Route path="/" element={<RequiresAuth />}>
+              <Route path="/your-gists" element={<YourGistsPage />} />
+              <Route path="/starred-gists" element={<YourGistsPage />} />
+              <Route path="/create-gist" element={<EditGist />} />
+              <Route path="/edit-gist/:id" element={<EditGist />} />
+            </Route>
+          <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </userContext.Provider>
   );
 }
 
