@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Box, Paper, Typography } from "@mui/material";
-import ViewFile from "../../../components/Gists/DisplayGists/GistsGridView/ViewFile/ViewFile";
+import ViewFile from "../../../components/common/ViewFile/ViewFile";
 import { blue } from "@mui/material/colors";
 import { GenericObject } from "../../../utils";
 

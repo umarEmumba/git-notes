@@ -1,9 +1,9 @@
 import { TablePagination } from '@mui/material';
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { gistsPerPage, landingPageViews, totalGists } from '../../../constants';
-import { AppDispatch, storeStateType } from '../../../store';
-import { fetchGists } from '../../../store/gists/gistsSlice';
+import { gistsPerPage, landingPageViews, totalGists } from '../../../../constants';
+import { AppDispatch, storeStateType } from '../../../../store';
+import { fetchGists } from '../../../../store/gists/gistsSlice';
 import GistsGridView from './GistsGridView/GistsGridView';
 import GistsListView from './GistsListView/GistsListView';
 

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import Loader from '../../../../common/Loader/Loader';
+import Loader from '../Loader/Loader';
 import "./ViewFile.scss";
 
 

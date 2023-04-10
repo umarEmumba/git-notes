@@ -1,9 +1,9 @@
 import { Avatar, Box, IconButton } from "@mui/material"
-import DropDownMenu from "../../common/DropDownMenu/DropDownMenu"
+import DropDownMenu from "../../DropDownMenu/DropDownMenu"
 import {  useContext, useMemo, useState } from "react";
-import ActionButton from "../../common/ActionButton/ActionButton";
-import userContext from "../../../context/userContext";
-import { clientId } from "../../../constants";
+import ActionButton from "../../ActionButton/ActionButton";
+import userContext from "../../../../context/userContext";
+import { clientId } from "../../../../constants";
 
 const UserSection = () => {
     const {user} = useContext(userContext);

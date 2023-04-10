@@ -2,7 +2,7 @@ import { Avatar, Box, Card, CardContent, Divider, Typography } from "@mui/materi
 import { blue } from "@mui/material/colors";
 import { gistType } from "../../../store/gists/types";
 import { dateToDuration } from "../../../utils";
-import ViewFile from "../../Gists/DisplayGists/GistsGridView/ViewFile/ViewFile";
+import ViewFile from "../ViewFile/ViewFile";
 import { useNavigate } from "react-router-dom";
 
 interface GistPropsType {

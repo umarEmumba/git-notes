@@ -1,11 +1,11 @@
 import { AppBar, Box } from '@mui/material';
 import { Container } from '@mui/system';
 import  { FC } from 'react';
-import { companyLogo, companyLogoAlt } from '../../constants';
-import Logo from '../common/Logo/Logo';
-import SearchBar from '../common/SearchBar/SearchBar';
-import NavBar from '../common/NavBar/NavBar';
-import NavBarItem from '../common/NavBarItem/NavBarItem';
+import { companyLogo, companyLogoAlt } from '../../../constants';
+import Logo from '../Logo/Logo';
+import SearchBar from '../SearchBar/SearchBar';
+import NavBar from '../NavBar/NavBar';
+import NavBarItem from '../NavBarItem/NavBarItem';
 import UserSection from './UserSection/UserSection';
 
 interface HeaderProps {

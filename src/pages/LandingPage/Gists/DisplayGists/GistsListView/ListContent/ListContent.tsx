@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import useFilteredGists from "../../../../../hooks/useFilteredGists";
+import useFilteredGists from "../../../../../../hooks/useFilteredGists";
 import { useContext } from "react";
-import userContext from "../../../../../context/userContext";
+import userContext from "../../../../../../context/userContext";
 import { Avatar, Box, TableBody, TableCell, TableRow, Typography } from "@mui/material";
-import { goToRoute } from "../../../../../utils";
-import Fork from "../../../../common/Fork/Fork";
-import Star from "../../../../common/Star/Star";
+import { goToRoute } from "../../../../../../utils";
+import Fork from "../../../../../../components/common/Fork/Fork";
+import Star from "../../../../../../components/common/Star/Star";
 
 const ListContent = () => {
     const navigate = useNavigate();

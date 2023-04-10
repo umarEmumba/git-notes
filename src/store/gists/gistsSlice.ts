@@ -3,11 +3,11 @@ import { gistsApiUrl } from "../../constants";
 import { gistsFunctions } from "../../utils/gistsService";
 import { getGistsParamType, gistsSliceType } from "./types";
 
-export const fetchGists : any = createAsyncThunk(
+export const fetchGists  = createAsyncThunk(
     gistsApiUrl,
     async ({page, func,accessToken}: getGistsParamType) => {
-      const response = await gistsFunctions[func](page,accessToken);
-      return {response,page};
+      const gists = await gistsFunctions[func](page,accessToken);
+      return {gists,page};
     }
   );
 
@@ -34,13 +34,13 @@ const gistsSlice = createSlice({
         builder.addCase(
             fetchGists.rejected, (state,action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message || null;
             }
             );
             builder.addCase(
                 fetchGists.fulfilled, (state,action) => {
                 state.status = 'succeeded';
-                state.gists  = action.payload.response;
+                state.gists  = action.payload.gists;
                 state.page   = action.payload.page;
             }
         );

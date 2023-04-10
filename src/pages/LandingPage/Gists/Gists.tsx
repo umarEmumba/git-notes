@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import { landingPageViews } from '../../constants';
+import { landingPageViews } from '../../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, storeStateType } from '../../store';
-import { fetchGists } from '../../store/gists/gistsSlice';
-import ViewToggler from '../common/ViewToggler/ViewToggler';
+import { AppDispatch, storeStateType } from '../../../store';
+import { fetchGists } from '../../../store/gists/gistsSlice';
+import ViewToggler from '../../../components/common/ViewToggler/ViewToggler';
 import DisplayGists from './DisplayGists/DisplayGists';
-import { setSnackBarMessage } from '../../store/snackBar';
+import { setSnackBarMessage } from '../../../store/snackBar';
 
 interface GistsProps {}
 

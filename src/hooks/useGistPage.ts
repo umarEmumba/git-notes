@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import userContext from "../context/userContext";
 import { gistType } from "../store/gists/types";
 import { useDispatch } from "react-redux";
 import { setSnackBarMessage } from "../store/snackBar";
+import { callApi } from "../utils";
 
 const useGistPage = () => {
   const { id } = useParams();
@@ -19,7 +19,9 @@ const useGistPage = () => {
     (async () => {
 
       try {
-        const response = await axios.get(`https://api.github.com/gists/${id}`);
+        const response = await  callApi(
+            `https://api.github.com/gists/${id}`, null, { method: "GET" }
+          );
         setGistData(response.data);
         setLoader(false);
       } 
@@ -29,6 +31,7 @@ const useGistPage = () => {
       }
     })();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.accessToken, id]);
 
   return {

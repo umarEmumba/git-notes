@@ -47,6 +47,7 @@ const useGrid = ()=>{
     const loadMoreRows = useCallback(() => {
       if(status === 'succeeded')
         return dispatch(fetchGists({page :page+1, func : 'getGists'}))
+      return Promise.resolve();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[ page, status]
     )

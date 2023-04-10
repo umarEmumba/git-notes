@@ -1,15 +1,13 @@
-import { Avatar, Typography, Grid, Box, Container } from "@mui/material";
+import { Avatar, Grid, Box, Container } from "@mui/material";
 import useGistPage from "../../hooks/useGistPage";
-import Header from "../../components/Header/Header";
+import Header from "../../components/common/Header/Header";
 import Loader from "../../components/common/Loader/Loader";
-import { dateToDuration } from "../../utils";
 import ActionIcons from "../../components/common/ActionIcons/ActionIcons";
 import FileContent from "./FileContent/FileContent";
-
+import GistInfo from "./GistInfo/GistInfo";
 
 const GistPage = () => {
-  const { gistData, loader, user } =
-    useGistPage();
+  const { gistData, loader, user } = useGistPage();
 
   return (
     <>
@@ -24,15 +22,7 @@ const GistPage = () => {
                 <Avatar sx={{width: "80%", height: "auto"}} src={gistData?.owner?.avatar_url} alt="User Profile" />
               </Grid>
               <Grid item xs={4} >
-                <Box className="pl-4">
-                  <Typography color="blue">{gistData?.owner?.login}</Typography>
-                  <Typography color="gray" fontSize="14px">
-                    Created {dateToDuration(gistData?.created_at)}{" "}
-                  </Typography>
-                  <Typography color="gray" fontSize="10px">
-                    Broadcast Server
-                  </Typography>
-                </Box>
+                <GistInfo username={gistData?.owner?.login || ""} date ={gistData?.created_at || ""}/>
               </Grid>
               <Grid item xs={6} >
                 <Box className="float-right">

@@ -9,8 +9,8 @@ InfiniteLoader as _InfiniteLoader ,
 List as _List,
 WindowScroller as _WindowScroller
 } from "react-virtualized";
-import useGrid from '../../../../hooks/useGrid';
-import Loader from '../../../common/Loader/Loader';
+import useGrid from '../../../../../hooks/useGrid';
+import Loader from '../../../../../components/common/Loader/Loader';
 
 const AutoSizer = _AutoSizer as unknown as FC<AutoSizerProps>;
 const InfiniteLoader = _InfiniteLoader as unknown as FC<InfiniteLoaderProps>;

@@ -1,5 +1,5 @@
 import { Box, Container, FormControl, TextField } from "@mui/material";
-import Header from "../../components/Header/Header";
+import Header from "../../components/common/Header/Header";
 import SubmitButton from "../../components/common/SubmitButton/SubmitButton";
 import useCreateGist from "../../hooks/useCreateGist";
 

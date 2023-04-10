@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import userContext from '../../context/userContext';
 import { AppDispatch } from '../../store';
 import { fetchGists } from '../../store/gists/gistsSlice';
-import Header from '../../components/Header/Header';
+import Header from '../../components/common/Header/Header';
 import Gist from '../../components/common/Gist/Gist';
 import useFilteredGists from '../../hooks/useFilteredGists';
 import ActionButton from '../../components/common/ActionButton/ActionButton';

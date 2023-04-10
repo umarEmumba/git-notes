@@ -1,5 +1,5 @@
 import { Container, Link, Typography } from "@mui/material";
-import Header from "../../components/Header/Header";
+import Header from "../../components/common/Header/Header";
 
 const NotFoundPage = () => {
   return (

@@ -1,5 +1,5 @@
 import { Box, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { tableColumns } from '../../../../constants';
+import { tableColumns } from '../../../../../constants';
 
 import ListContent from './ListContent/ListContent';
 

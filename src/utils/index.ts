@@ -2,9 +2,7 @@ import axios from "axios";
 
 type headersType = {
     method: string;
-    headers: {
-      [key: string]: any;
-    };
+    headers?: GenericObject
   };
 export  type GenericObject = { [key: string]: any };
 
