@@ -1,5 +1,5 @@
 import { Avatar, Box,  Typography } from '@mui/material';
-import { useContext, useEffect } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import userContext from '../../context/userContext';
 import { AppDispatch } from '../../store';
@@ -11,7 +11,7 @@ import ActionButton from '../../components/common/ActionButton/ActionButton';
 import { useLocation } from 'react-router-dom';
 import Loader from '../../components/common/Loader/Loader';
 
-const YourGistsPage = () => {
+const YourGistsPage: FC = () => {
   const {user} = useContext(userContext);
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
@@ -19,9 +19,11 @@ const YourGistsPage = () => {
 
   useEffect(()=>{
     const fetchGistFunction = location.pathname === "/starred-gists" ? "starredGists" : "getGists";
-    dispatch(fetchGists({page : 1, func : fetchGistFunction, accessToken : user?.accessToken}));
+    if(user?.accessToken){
+      dispatch(fetchGists({page : 1, func : fetchGistFunction, accessToken : user.accessToken}));
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  },[ location.pathname, user?.accessToken])
 
     return (
       <>

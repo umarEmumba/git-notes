@@ -20,7 +20,7 @@ const Gists: FC<GistsProps> = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  useEffect(function getGists() {
+  useEffect(function getGistsError() {
     if(error)
       dispatch(setSnackBarMessage(error));
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -31,7 +31,7 @@ const DropDownMenu : FC<DropDownMenuProps> = ({open = false, anchorEl = null, ha
         >
             <MenuItem>Signed In as {user?.login}</MenuItem>
             <MenuItem>
-            <Link underline="hover" color="inherit" className="w-full  hover:bg-slate-200" href="/create-gist">
+            <Link underline="hover" color="inherit" className="w-full" href="/create-gist">
                 Create Gist
             </Link>
             </MenuItem>

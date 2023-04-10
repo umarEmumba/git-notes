@@ -53,6 +53,7 @@ const EditGist = () => {
           </FormControl>
           <Box className="p-5">
             <SubmitButton
+              disabled={!gistContent || !fileName}
               handleSubmit={
                 id ? () => updateGist(id) : createGist
               }

@@ -44,8 +44,7 @@ const GistPage = () => {
               </Grid>
             </Grid>
             <Paper className="p-4">
-              <Grid>
-                <Box className="gistContentWrapper">
+                <Box className="min-h-[420px]">
                   <Typography color={blue[500]}>
                     {gistData?.files[Object.keys(gistData?.files)[0]]?.filename}
                   </Typography>
@@ -56,7 +55,6 @@ const GistPage = () => {
                     }
                   />
                 </Box>
-              </Grid>
             </Paper>
           </Box>
         </Container>

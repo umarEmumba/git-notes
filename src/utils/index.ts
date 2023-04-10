@@ -6,10 +6,11 @@ type headersType = {
       [key: string]: any;
     };
   };
+export  type GenericObject = { [key: string]: any };
 
 export const callApi = async (
     apiRoute: string,
-    body: string | null,
+    body: GenericObject | null,
     headers: headersType,
   ) => {
     try {
@@ -34,7 +35,7 @@ export const callApi = async (
 
   export const dateToDuration = (date: string): string => {
     let timeString = "";
-    let totalMilliSeconds: number =
+    const totalMilliSeconds: number =
       new Date().getTime() - new Date(date).getTime();
     let timeAgo = Math.floor(totalMilliSeconds / 86400000);
     if (timeAgo > 0) return (timeString += `${timeAgo} days ago`);

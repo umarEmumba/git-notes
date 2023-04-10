@@ -27,7 +27,7 @@ const ViewFile: FC<ViewFileProps> = ({url}) => {
       <>
       {loader && <Loader />}
       {!loader && (
-        <pre className="max-h-80 overflow-scroll" >
+        <pre className="overflow-scroll min-h-[inherit]" >
           <code dangerouslySetInnerHTML={{ __html: content }} />
         </pre>
       )}

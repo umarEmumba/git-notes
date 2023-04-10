@@ -25,7 +25,6 @@ const theme = createTheme ({
 
 const App = () => {
   const auth = useAuth();
-
   return (
     <userContext.Provider value = {auth}>
       <BrowserRouter>

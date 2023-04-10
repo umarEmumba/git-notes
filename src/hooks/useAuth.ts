@@ -3,7 +3,6 @@ import { authService, userType } from "../utils/authService";
 
 const useAuth = () => {
     const {user : AuthUser} = authService();
-    console.log({AuthUser});
     const [user,setUser]   = useState<userType | null>(AuthUser);
     return {user,setUser};
 }

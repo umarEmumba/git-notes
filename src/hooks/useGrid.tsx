@@ -36,7 +36,6 @@ const useGrid = ()=>{
     
     useEffect(function AppendGists(){
       if(page > localPage){
-        console.log("when page changes")
         setGridGists((prevGists)=> [...prevGists,...gists])
         setLocalPage(page);
       }

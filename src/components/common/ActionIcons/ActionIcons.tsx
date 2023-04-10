@@ -23,7 +23,7 @@ const ActionIcons : FC<ActionIconsProps> = ({id, isOwner = false}) => {
     }
   
     const onDelete = async (id : string) => {
-      let resp = await removeGist(id, user?.accessToken);
+      const resp = await removeGist(id, user?.accessToken);
       if(resp)
       {
         dispatch(setSnackBarMessage("Gist has been deleted"));

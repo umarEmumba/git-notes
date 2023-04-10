@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import userContext from "../context/userContext";
 import { gistType } from "../store/gists/types";
+import { useDispatch } from "react-redux";
+import { setSnackBarMessage } from "../store/snackBar";
 
 const useGistPage = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [gistData, setGistData] = useState<gistType | undefined>();
   const [loader, setLoader] = useState(true);
   const {user} = useContext(userContext);
@@ -20,7 +24,8 @@ const useGistPage = () => {
         setLoader(false);
       } 
       catch (err) {
-        console.log("API ERROR", err);
+        dispatch(setSnackBarMessage("Gist Not Found"));
+        navigate("/")
       }
     })();
 

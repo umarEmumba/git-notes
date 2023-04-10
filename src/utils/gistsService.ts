@@ -2,14 +2,15 @@ import axios from "axios";
 import { callApi } from ".";
 import { apiBaseUrl, gistsApiUrl, gistsPerPage } from "../constants";
 
- const getGists = async (pageNumber : number, accessToken : string = '') => {
+ const getGists = async (pageNumber : number, accessToken : string | undefined) => {
     try {
+      console.log({accessToken})
       const resp = await callApi(
         `${gistsApiUrl}?per_page=${gistsPerPage}&page=${pageNumber}`, null,
         {
           method: "GET",
           headers: {
-            ...accessToken && {  Authorization: `token ${accessToken}` }
+            ...(accessToken && {  Authorization: `token ${accessToken}` })
           }
         }
       );
@@ -40,7 +41,7 @@ import { apiBaseUrl, gistsApiUrl, gistsPerPage } from "../constants";
 
 export const starAGist = async (gist_id: string, accessToken : string) => {
     try {
-      let resp = await callApi(
+      const resp = await callApi(
         `${apiBaseUrl}${gist_id}/star`,
         null,
         {
@@ -59,7 +60,7 @@ export const starAGist = async (gist_id: string, accessToken : string) => {
 
   export const unStarAGist = async (gist_id: string, accessToken : string) => {
     try {
-      let resp = await callApi(
+      const resp = await callApi(
         `${apiBaseUrl}${gist_id}/star`,
         null,
         {
@@ -78,7 +79,7 @@ export const starAGist = async (gist_id: string, accessToken : string) => {
   
   export const forkAGist = async (gist_id: string, accessToken : string) => {
     try {
-      let response = await callApi(
+      const response = await callApi(
         `${apiBaseUrl}${gist_id}/forks`,
         null,
         {
@@ -97,7 +98,7 @@ export const starAGist = async (gist_id: string, accessToken : string) => {
   
   export const editGist = async (gist_id: string, accessToken : string) => {
     try {
-      let response = await callApi(
+      const response = await callApi(
         `${apiBaseUrl}${gist_id}`,
         null,
         {
@@ -116,7 +117,7 @@ export const starAGist = async (gist_id: string, accessToken : string) => {
   
   export const removeGist = async (gist_id: string, accessToken : string | undefined) => {
     try {
-      let response = await axios.delete(
+      const response = await axios.delete(
         `${apiBaseUrl}${gist_id}`,
         {
           method: "DELETE",
