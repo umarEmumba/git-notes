@@ -12,7 +12,7 @@ const gistsSlice = createSlice({
     name: "snackBar",
     initialState,
     reducers: {
-        toggleSnackBar :  (state,action) => { state.isOpen = !state.isOpen },
+        toggleSnackBar :  (state,_) => { state.isOpen = !state.isOpen },
         setSnackBarMessage : (state,action) => { state.message = action.payload; state.isOpen = true; }
     },
 });

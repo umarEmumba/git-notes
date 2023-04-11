@@ -21,43 +21,43 @@ const GistsGridView = () => {
   const { rowRenderer,isRowLoaded, loadMoreRows, filteredGists, status } = useGrid();
 
   return (
-    <>
-    <AutoSizer >
-          {({ width }) => (
-            <WindowScroller>
-              {({ height, isScrolling, onChildScroll, scrollTop }) => (
-                <InfiniteLoader
-                  isRowLoaded={isRowLoaded}
-                  loadMoreRows={loadMoreRows}
-                  rowCount={1000}
-                >
-                  {({ onRowsRendered, registerChild }) => (
-                    <List
-                      autoHeight
-                      onRowsRendered={onRowsRendered}
-                      ref={registerChild}
-                      height={height}
-                      isScrolling={isScrolling}
-                      onScroll={onChildScroll}
-                      rowCount={Math.ceil(filteredGists.length/3)}
-                      rowHeight={370}
-                      rowRenderer={rowRenderer}
-                      threshold={10}
-                      scrollTop={scrollTop}
-                      width={width}
-                    />
+      !filteredGists.length ? 
+        <Loader />
+        :
+        <>
+        <AutoSizer >
+              {({ width }) => (
+                <WindowScroller>
+                  {({ height, isScrolling, onChildScroll, scrollTop }) => (
+                    <InfiniteLoader
+                      isRowLoaded={isRowLoaded}
+                      loadMoreRows={loadMoreRows}
+                      rowCount={1000}
+                      minimumBatchSize={3}
+                      threshold={1}
+                    >
+                      {({ onRowsRendered, registerChild }) => (
+                        <List
+                          autoHeight
+                          onRowsRendered={onRowsRendered}
+                          ref={registerChild}
+                          height={height}
+                          isScrolling={isScrolling}
+                          onScroll={onChildScroll}
+                          rowCount={Math.ceil(filteredGists.length/3)}
+                          rowHeight={370}
+                          rowRenderer={rowRenderer}
+                          scrollTop={scrollTop}
+                          width={width}
+                        />
+                      )}
+                    </InfiniteLoader>
                   )}
-                </InfiniteLoader>
+                </WindowScroller>
               )}
-            </WindowScroller>
-          )}
-        </AutoSizer>
-        {
-          status === "loading" && 
-          <Loader />
-        }
-    </>
-
+            </AutoSizer>
+              {status === "loading" && <Loader /> }
+            </>
 );
 }
 

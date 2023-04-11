@@ -36,14 +36,14 @@ const ActionIcons : FC<ActionIconsProps> = ({id, isOwner = false}) => {
         {
             isOwner && (
             <>
-            <span>
+            <span className="pr-1">
                 <BorderColor
                     color="primary"
                     onClick={()=>onEdit(id)}
                 />
                 Edit
             </span>
-            <span>
+            <span className="pr-1">
                 <Delete
                     color="primary"
                     onClick={()=>onDelete(id)}
@@ -53,11 +53,11 @@ const ActionIcons : FC<ActionIconsProps> = ({id, isOwner = false}) => {
             </>
             )
         }
-        <span>
+        <span className="pr-1">
             <Star id={id} />
             Star
         </span>
-        <span>
+        <span className="pr-1">
             <Fork
                 enable= {isOwner ? false : true }
                 id={id}

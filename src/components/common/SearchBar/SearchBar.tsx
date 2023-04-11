@@ -13,7 +13,7 @@ const SearchBar: FC<SearchBarProps> = () =>
   const dispatch = useDispatch<AppDispatch>();
   const onSearchChange = (e : ChangeEvent<HTMLInputElement  | HTMLTextAreaElement>) => {
     setSearchString(e.target.value);
-    dispatch(setSearchQuery(e.target.value))
+    dispatch(setSearchQuery(e.target.value));
   }
   const searchBarStyle = {
     fieldset: { borderColor: "white" },
@@ -36,14 +36,14 @@ const SearchBar: FC<SearchBarProps> = () =>
     InputLabelProps={{
       shrink: false,
     }}
-  onChange = {(e)=>onSearchChange(e)}
-  sx={searchBarStyle}
-  InputProps={{
-    endAdornment: (
-      <InputAdornment position="end">
-        <Search color="secondary" fontSize='small'/>
-      </InputAdornment>
-    )
+    onChange = {(e)=>onSearchChange(e)}
+    sx={searchBarStyle}
+    InputProps={{
+      endAdornment: (
+        <InputAdornment position="end">
+          <Search color="secondary" fontSize='small'/>
+        </InputAdornment>
+      )
   }}
 />
 );
